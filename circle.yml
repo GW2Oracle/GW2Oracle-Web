@@ -1,0 +1,26 @@
+machine:
+  timezone: America/Los_Angeles
+  services:
+    - docker
+  environment:
+    RAILS_ENV: test
+
+dependencies:
+  override:
+    - docker info
+    - |
+      cat << VARS > .env
+      SECRET_KEY_TEST=$SECRET_KEY_TEST
+      POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+    - docker-compose build
+
+database:
+  pre:
+    - docker-compose up -d
+    - sleep 1
+  override:
+    - docker-compose run gw2oracle rake db:create db:schema:load
+
+test:
+  override:
+    - docker-compose run gw2oracle echo TODO
