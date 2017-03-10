@@ -5,8 +5,9 @@ machine:
   environment:
     RAILS_ENV: test
   pre:
-    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
-    - sudo pip install docker-compose
+    - curl -L -o /usr/bin/docker 'http://s3-external-1.amazonaws.com/circle-downloads/docker-1.6.2-circleci'
+    - chmod 0755 /usr/bin/docker
+    - start docker
 
 dependencies:
   override:
