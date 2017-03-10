@@ -5,6 +5,7 @@ RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 COPY Gemfile ./
 COPY Gemfile.lock ./
+RUN gem install bundler
 RUN bundle install --binstubs
 COPY . .
 VOLUME ["$INSTALL_PATH/public"]
