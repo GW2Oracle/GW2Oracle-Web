@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  gw2oracle:
+    volumes:
+      - '.:/gw2oracle'
+  web:
+    volumes:
+      - '.:/gw2oracle'
