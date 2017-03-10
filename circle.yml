@@ -4,10 +4,15 @@ machine:
     - docker
   environment:
     RAILS_ENV: test
+  pre:
+    - pip install
+    - pip install docker-compose
 
 dependencies:
   override:
     - docker info
+    - docker version
+    - docker-compose version
     - |
       cat << VARS > .env
       SECRET_KEY_TEST=$SECRET_KEY_TEST
